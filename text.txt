@@ -1,0 +1,31 @@
+npm init
+npm i express 
+
+To run the server Make start as node index.js in package.json
+
+
+
+********************************Building REST API's 
+
+REST API - json  -> Done
+
+GET /users - List all users -> Done
+
+GET api/users/1 - get the user with ID 1 - done
+GET api/users/2 - get the user with ID 2 - done
+GET api/usrs/:id
+:id----> dynamic, variable
+POST api/users - create new user - done
+
+PATCH api/users/1 - edit user with ID 1 
+
+DELETE api/users/1 - delete user with ID 1
+
+
+********************
+POSTMAN is just a tool that help in api testing and documentation 
+********************
+
+
+
+
