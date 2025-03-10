@@ -7,8 +7,18 @@ const { error } = require("console");
 
 const app = express()
 const PORT = 8000;
+// middleware build in middleware
+app.use(express.urlencoded({extended: false})) 
+// req, res, next 
+app.use((req, res, next) => {
+  console.log("This is first middleware");
+  const myUserName = req.first_name;
+  next();
+})
 
-app.use(express.urlencoded({extended: false}))
+
+
+
 // routes
 app.get("/users", (req, res) => {
   const html = `
@@ -18,6 +28,11 @@ app.get("/users", (req, res) => {
   `;
   return res.send(html)
 })
+
+// app.use((req,res, next) => {
+//   console.log("\n This is second middleware ");
+// next();
+// })
 
 app.route('/api/users/:id')
 .get((req, res) => {

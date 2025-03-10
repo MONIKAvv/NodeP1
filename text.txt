@@ -26,6 +26,33 @@ DELETE api/users/1 - delete user with ID 1
 POSTMAN is just a tool that help in api testing and documentation 
 ********************
 
+**********************
+Middleware***************
 
+app.use(express.urlencoded {extended: false}) ---> build in middleware
+app.use((req, res, next) => {
+  console.log(req)
+  res.send("End of the server");
+  res.End("Server found some malicious activity")
+next(); --> send the request to next express or function
+})
+
+
+app.get("/api/users/:id", (req, res) => {
+  const id = req.params.id
+  const user = users.find((user) => user.id === id 
+  
+  )
+  res.send(user)
+})
+
+app.post("/api/users", (req, res) => {
+  //inserting new user to the db 
+  const body = req.body
+  body.push({...body, id: users.length+1})
+  fs.writeFile("./MOCK_DATA.json", JSON.stringify(users) ,(error, data) => {
+    return res.json({Status: "Success"})
+  })
+})
 
 
