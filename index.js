@@ -1,8 +1,7 @@
 const express = require("express");
 const users = require("./MOCK_DATA.json");
 const fs = require("fs");
-const { error } = require("console");
-
+const connectDB = require('./config/db')
 // middleware
 
 const app = express()
@@ -10,6 +9,8 @@ const PORT = 8000;
 // middleware build in middleware
 app.use(express.urlencoded({extended: false})) 
 // req, res, next 
+connectDB();
+
 app.use((req, res, next) => {
   console.log("This is first middleware");
   const myUserName = req.first_name;
@@ -40,24 +41,12 @@ app.route('/api/users/:id')
   const user = users.find((user) => 
     user.id === id
   );
-  return res.json(user);
-}).patch((req, res) => {
-  const id = req.params.id;
-  const user = users.find((user) =>{
-    if(user.id === id){
-      users.pop(body)
-    }
+  return res.status(201).json(user);
+}).patch((req, res) =>{
+    return res.status(200).json({status: "Success"})
   }
-    
-)
-const body = req.body;
-users.push(body);
-fs.writeFile("./MOCK_DATA.json", JSON.stringify(users),(error, data) => {
-
-  return res.json({status: "Success!"})
-})
-}).delete((req, res) => {
-  return res.json({status: "Pending"})
+).delete((req, res) => {
+  return res.status(200).json({status: "Success"})
 })
 
 app.post("/api/users", (req, res) => {
@@ -78,5 +67,5 @@ app.post("/api/users", (req, res) => {
 // })
 
 app.listen(PORT, () => {
-  console.log("Server Connected Successfully!");
+  console.log(`Server Connected Successfully! at ${PORT}`);
 })
