@@ -56,3 +56,12 @@ app.post("/api/users", (req, res) => {
 })
 
 
+
+model view controller
+controller ---> model ko control karta hai ---> view ko update karta
+
+
+rest the things in router is the controllers so we will create folder named as controllers
+
+
+now how can we send data from pst to mongodb

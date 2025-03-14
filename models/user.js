@@ -1,11 +1,11 @@
-const { type } = require('@testing-library/user-event/dist/type');
+
 const mongoose = require('mongoose')
 //structure of schema
 
 const userSchema = new mongoose.Schema({
   first_name : {
     type: String,
-    require : true,
+    required : true,
 
   },
   last_name: {
@@ -14,20 +14,20 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
   },
   gender: {
     type: String,
-    require: true
+    required: true
   },
   department: {
     type: String,
-    require: true,
+    required: true,
   },
 
-  timestamps: true,
-})
+ 
+}, {timestamps: true,})
 
 //define model
 
